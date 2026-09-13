@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101816">
+  <title>LocalChat — private chat nearby</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="brand" aria-label="LocalChat">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+      <span>LocalChat</span>
+      <span class="local-pill"><span></span> Same Wi-Fi</span>
+    </header>
+
+    <section id="welcomeView" class="welcome-card">
+      <div class="eyebrow">Local. Temporary. Yours.</div>
+      <h1>A quiet place to<br><em>talk nearby.</em></h1>
+      <p class="intro">Create a private room for two. Your conversation stays between devices on this local network.</p>
+
+      <label class="field-label" for="displayName">What should we call you?</label>
+      <input id="displayName" class="text-input" maxlength="28" autocomplete="name" placeholder="Your name">
+
+      <div class="actions">
+        <button id="createButton" class="button primary" type="button">Create a room <span>→</span></button>
+        <div class="divider"><span>or join one</span></div>
+        <div class="join-row">
+          <input id="roomCode" class="text-input code-input" maxlength="6" autocomplete="off" spellcheck="false" placeholder="ROOM CODE" aria-label="Room code">
+          <button id="joinButton" class="button secondary" type="button">Join</button>
+        </div>
+      </div>
+      <p id="welcomeError" class="error-message" role="alert"></p>
+      <p class="privacy-note"><span aria-hidden="true">⌁</span> No accounts · No chat history · Up to 2 people</p>
+    </section>
+
+    <section id="waitingView" class="waiting-card hidden" aria-live="polite">
+      <div class="signal-orbit" aria-hidden="true"><span></span><span></span><b>⌁</b></div>
+      <div class="eyebrow">Room is ready</div>
+      <h2>Invite someone nearby</h2>
+      <p>Ask the other person to open this site on the same Wi-Fi and enter this code.</p>
+      <button id="copyCodeButton" class="room-code" type="button" aria-label="Copy room code">
+        <span id="waitingCode"></span><small>Click to copy</small>
+      </button>
+      <button id="copyLinkButton" class="button primary wide" type="button">Copy invite link</button>
+      <p id="waitingStatus" class="waiting-status"><i></i> Waiting for the second person…</p>
+      <button id="cancelButton" class="text-button" type="button">Leave room</button>
+    </section>
+
+    <section id="chatView" class="chat-card hidden">
+      <header class="chat-header">
+        <div>
+          <div class="peer-title"><span id="peerAvatar" class="avatar">?</span><span id="peerName">Connected peer</span></div>
+          <div id="connectionLabel" class="connection-label"><i></i> Connecting</div>
+        </div>
+        <div class="room-label">Room <strong id="chatCode"></strong></div>
+      </header>
+
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-label="Chat messages">
+        <div id="systemIntro" class="system-message">You’re connected. This private room is ready.</div>
+      </div>
+
+      <form id="messageForm" class="composer">
+        <label class="sr-only" for="messageInput">Message</label>
+        <textarea id="messageInput" rows="1" maxlength="2000" placeholder="Write a message…"></textarea>
+        <button id="sendButton" type="submit" aria-label="Send message">↑</button>
+      </form>
+      <footer class="chat-footer">
+        <span><i></i> <span id="transportLabel">Connecting</span></span>
+        <button id="leaveButton" class="text-button danger" type="button">Leave chat</button>
+      </footer>
+    </section>
+
+    <footer class="page-footer">Made for conversations on your local network.</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
